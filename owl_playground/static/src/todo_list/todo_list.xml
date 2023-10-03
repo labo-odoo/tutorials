@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="owl_playground.TodoList" owl="1">
+        <style>
+            /* Style for the outer container div */
+            .todo-list-container {
+                text-align: center;
+                background-color: #f5f5f5;
+                padding: 20px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                margin: 20px;
+                display: flex; /* Use flexbox to arrange divs side by side */
+                justify-content: space-between; /* Add space between the divs */
+            }
+
+            /* Style for the input fields */
+            input, .btn {
+                padding: 10px;
+                margin-right: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 16px;
+            }
+
+            /* Style for the buttons */
+            .btn {
+                background-color: #007bff;
+                color: #fff;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .btn:hover {
+                background-color: #0056b3;
+            }
+
+            /* Style for the checkboxes */
+            .delete-button.checked {
+                display: inline-block;
+            }
+            
+            .delete-button {
+                display: none;
+            }
+
+        </style>
+        <div class="todo-list-container">
+            <div>
+                First Name-> <input placeholder="Add Todo" type="text" t-on-keyup="add_todo" id="todo_name" t-ref="todoListInput"/>
+                <button name="add_button" t-on-click="add_todo" class="btn btn-primary">Submit</button>
+            </div>
+            <div>
+                Delete todo-> <input placeholder="Delete Todo" type="number" id="delete_todo"/>
+                <button name="delete" t-on-click="delete_todo" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+        <!-- <div class="todo-list-container"> -->
+            <div class="todo-list-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="todoList" t-as="as" t-key="as.id">
+                            <tr>
+                                <td>
+                                    <input type="checkbox" id="del_todo" name="del_todo" t-att-data-id="as.id" t-on-change="checkTodo"/>
+                                    <t t-esc="as.id"/>
+                                </td>
+                                <td>
+                                    <Todo t-props ="as"/>                               
+                                </td>
+                                <td>
+                                    <button name="edit" t-on-click="update_todo" t-att-data-id="as.id" class="btn btn-primary "> Update </button>
+                                </td>
+                                <td>
+                                    <button name="delete" t-on-click="del_check_todo" t-att-data-id="as.id" t-att-class="{'checked': as.done}" class="btn btn-danger delete-button">&#128465; Delete</button>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div class="todo-list-container">
+                <h3> Recently Deleted </h3>
+            </div> -->
+            <div class="todo-list-container">
+                <h3>Recently Added</h3>
+                <!-- <ul>
+                   <t t-foreach="recentlyAddedItems" t-as="item" t-key="as.id">
+                        <li><t t-esc="item.description"/></li>
+                    </t>  
+                </ul> -->
+            </div>
+
+    </t>
+</templates>
+

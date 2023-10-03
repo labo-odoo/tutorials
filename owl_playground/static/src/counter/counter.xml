@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="owl_playground.Counter" owl="1">
+        <style>
+            /* Style for the outer container div */
+            .counter-container {
+                text-align: center;
+                background-color: #f5f5f5;
+                padding: 20px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                margin: 20px;
+            }
+
+            /* Style for the counter text */
+            p {
+                font-size: 24px;
+                margin-bottom: 20px;
+                color: black;
+            }
+
+            /* Style for the buttons */
+            .btn {
+                padding: 10px 20px;
+                margin: 5px;
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .btn:hover {
+                background-color: #0056b3;
+            }
+        </style>
+        <div class="counter-container">
+            <p>Hello odooers!!!!</p>
+            <p>Counter: <t t-esc="state.value"/></p>
+            <button class="btn" t-on-click="increment">Increment</button>
+            <button class="btn" t-on-click="decrement">Decrement</button>
+        </div>
+    </t>
+</templates>
